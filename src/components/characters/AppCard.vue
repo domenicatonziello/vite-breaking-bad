@@ -26,5 +26,15 @@ export default {
 
 
 <style scoped lang="scss">
+.mycard {
+    padding: 15px;
+    background-color: white;
+    margin: 15px 0;
+    border-radius: 20px;
 
+    img {
+        width: 100%;
+        height: 200px;
+    }
+}
 </style>
