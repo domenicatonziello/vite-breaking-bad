@@ -4,7 +4,8 @@ export default {
     name: 'SelectBar',
     data() {
         return {
-            store
+            store,
+            type: ''
         }
     },
     emits: ['change-option']
@@ -13,8 +14,9 @@ export default {
 
 
 <template>
-    <select class="container form-select">
-        <option v-for="(type) in store.optionTypes" @change="$emit('change-option', type)" :value="type"> {{ type }}
+    <select v-model="type" @change="$emit('change-option', type)" class="container form-select">
+        <option value="restart"> - </option>
+        <option v-for="(type) in store.optionTypes" :key="type" :value="type"> {{ type }}
         </option>
     </select>
 </template>

@@ -8,28 +8,28 @@ export default {
   components: { AppCard, AppHeader, SelectBar },
   data() {
     return {
+      // value: '',
       store,
-      pokemonListUrl: 'https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons?',
+      pokemonUrl: 'https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons?per=10&page=5',
     }
   },
   methods: {
-    fetchPokemonList() {
-      this.pokemonListUrl += 'per=10&page=5'
-      axios.get(this.pokemonListUrl)
+    fetchPokemonList(url) {
+      axios.get(url)
         .then(result => {
           store.pokemonList = result.data.docs;
         })
     },
     filterPokemonTypes(type) {
-      this.pokemonListUrl += `eq[${type}]`;
-      axios.get(this.pokemonListUrl)
-        .then(result => {
-          store.pokemonList = result.data.docs;
-        })
-    }
+      const url = `${this.pokemonUrl}&eq[type1]=${type}`;
+      this.fetchPokemonList(url);
+      if (type === 'restart') {
+        this.fetchPokemonList(this.pokemonUrl);
+      }
+    },
   },
   mounted() {
-    this.fetchPokemonList();
+    this.fetchPokemonList(this.pokemonUrl);
   }
 }
 </script>
@@ -40,7 +40,7 @@ export default {
   <main>
     <div class="container">
       <div class="row row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-        <app-card v-for="pokemon in store.pokemonList" :key="pokemon['_id']"> </app-card>
+        <app-card v-for="pokemon in store.pokemonList" :key="pokemon['_id']" :pokemon="pokemon"> </app-card>
       </div>
     </div>
   </main>
