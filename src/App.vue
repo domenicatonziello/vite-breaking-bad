@@ -24,16 +24,7 @@ export default {
   <main>
     <div class="container">
       <div class="row row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-        <app-card v-for="pokemon in store.pokemonList" :key="pokemon['_id']">
-          <!-- <div class="col">
-            <div class="mycard">
-              <img :src="pokemon.imageUrl" :alt="pokemon.name">
-              <p> #{{ pokemon.number }}</p>
-              <h3>{{ pokemon.name }}</h3>
-              <p>{{ pokemon.ability1 }}</p>
-            </div>
-          </div> -->
-        </app-card>
+        <app-card v-for="pokemon in store.pokemonList" :key="pokemon['_id']" :pokemon="pokemon"> </app-card>
       </div>
     </div>
   </main>

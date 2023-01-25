@@ -2,10 +2,8 @@
 import { store } from '../../data/store';
 export default {
     name: 'AppCard',
-    data() {
-        return {
-            store
-        }
+    props: {
+        pokemon: Object
     }
 }
 </script>
@@ -15,10 +13,10 @@ export default {
 <template>
     <div class="col">
         <div class="mycard">
-            <img :src="store.pokemonList.imageUrl" :alt="store.pokemonList.name">
-            <p> #{{ store.pokemonList.number }}</p>
-            <h3>{{ store.pokemonList.name }}</h3>
-            <p>{{ store.pokemonList.ability1 }}</p>
+            <img :src="pokemon.imageUrl" :alt="pokemon.name">
+            <p> #{{ pokemon.number }}</p>
+            <h3>{{ pokemon.name }}</h3>
+            <p>{{ pokemon.ability1 }}</p>
         </div>
     </div>
 </template>
@@ -31,10 +29,12 @@ export default {
     background-color: white;
     margin: 15px 0;
     border-radius: 20px;
+    text-align: center;
 
     img {
         width: 100%;
-        height: 200px;
+        height: 150px;
+        margin: 20px 0;
     }
 }
 </style>
