@@ -1,9 +1,11 @@
 <script>
-// import { store } from '../../data/store';
+import { store } from '../../data/store';
 export default {
     name: 'AppCard',
-    props: {
-        pokemon: Object
+    data() {
+        return {
+            store
+        }
     }
 }
 </script>
@@ -13,10 +15,10 @@ export default {
 <template>
     <div class="col">
         <div class="mycard">
-            <img :src="pokemon.imageUrl" :alt="pokemon.name">
-            <p> #{{ pokemon.number }}</p>
-            <h3>{{ pokemon.name }}</h3>
-            <p>{{ pokemon.ability1 }}</p>
+            <img :src="store.pokemonList.imageUrl" :alt="store.pokemonList.name">
+            <p> #{{ store.pokemonList.number }}</p>
+            <h3>{{ store.pokemonList.name }}</h3>
+            <p>{{ store.pokemonList.ability1 }}</p>
         </div>
     </div>
 </template>
